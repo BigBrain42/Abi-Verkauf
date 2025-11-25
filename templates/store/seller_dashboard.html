@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Verkäufer-Dashboard{% endblock %}
+{% block content %}
+<h2>Verkäufer Dashboard</h2>
+<h3>Deine Produkte</h3>
+<div class="list-group">
+  {% for p in products %}
+  <div class="list-group-item">
+    <h5>{{ p.name }} <small class="text-muted">({{ p.available }} verfügbar)</small></h5>
+    <p>{{ p.description|truncatewords:30 }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+<h3 class="mt-4">Benachrichtigungen</h3>
+<ul class="list-group">
+  {% for n in notifications %}
+  <li class="list-group-item">{{ n.message }} <small class="text-muted">{{ n.created_at }}</small></li>
+  {% empty %}
+  <li class="list-group-item">Keine neuen Benachrichtigungen.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
